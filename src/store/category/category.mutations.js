@@ -2,45 +2,45 @@ export default {
     setItems: ((state, category) => state.category = category),
 
     setEditedItemId: ((state, id) => state.editedItemId = id),
+    setEditedItem: ((state, category) => state.editCategory = category),
 
+
+    //Item for Update
     setItemUpdate: ((state, item) => state.itemUpdate = item),
-
-    setEditedItem: ((state, category) => state.editedItem = category),
-
-
-    setCategoryId: ((state, categoryId) => state.categoryId = categoryId),
-
     resetItemUpdate: ((state) => state.itemUpdate = {}),
+
+
+//PATH OF DB
+    setCategoryId: ((state, categoryId) => state.categoryId = categoryId),
 
     resetTableId: ((state) => state.categoryId = ''),
 
     setSubEntity: ((state, subEntity) => state.subEntity = subEntity),
 
-
     resetSubEntity: ((state) => state.subEntity = ''),
 
-    resetEditedItemId: ((state) => state.editedItemId = ''),
 
-    resetEditedItem: ((state) => {
-        for (const key in state.editedItem) {
-            state.editedItem[key] = ''
+    resetEditedCategoryId: ((state) => state.editedItemId = ''),
+
+    resetEditedCategory: ((state) => {
+        for (const key in state.editCategory) {
+            state.editCategory[key] = ''
         }
-        delete state.editedItem.id;
+        delete state.editCategory.id;
     }),
 
-    editItem: ((rootState, expness) => {
-        const index = rootState.category.findIndex(p => p.id ===state.categoryId)
-        debugger
+    editCategory: ((rootState, expness) => {
 
-        rootState.category.splice(index, 1, expness)
+        const index = rootState.category.tableCategory.findIndex(p => p.id === state.categoryId)
+        rootState.category.tableCategory.splice(index, 1, expness)
     }),
 
-    deleteItem: ((state, categoryID) => {
-        const index = state.category.findIndex(p => p.id === categoryID)
-        state.category.splice(index, 1);
+    deleteCategory: ((state, categoryID) => {
+        const index = state.category.tableCategory.findIndex(p => p.id === categoryID)
+        state.category.tableCategory.splice(index, 1);
     }),
 
-    insertItem: ((state, category) => {
-        state.category.push(category)
+    insertCategory: ((state, category) => {
+        state.category.tableCategory.push(category)
     })
 }

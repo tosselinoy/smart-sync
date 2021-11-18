@@ -1,12 +1,15 @@
 export default {
-    category: [],
-    editedItemId: ''
-    ,
-    itemUpdate:{},
+    category: {},
+
+    // Item For Update
+    itemUpdate: {},
+
+    //Path for DB
     categoryId: '',
     subEntity: '',
 
-    editedItem: {
+    editedItemId: '',
+    editCategory: {
         name: '',
         price: null,
         date: '',

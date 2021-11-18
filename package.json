@@ -12,7 +12,9 @@
     "quasar": "1.15.22",
     "vue": "2.6.14",
     "vue-router": "3.5.3",
-    "axios": "0.24.0"
+    "axios": "0.24.0",
+    "vuex": "3.6.2",
+    "firebase": "8.10.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "4.5.14",
@@ -24,6 +26,7 @@
     "stylus": "0.55.0",
     "stylus-loader": "3.0.2",
     "vue-cli-plugin-quasar": "1.0.0",
-    "vue-template-compiler": "2.6.14"
+    "vue-template-compiler": "2.6.14",
+    "firebase-tools": "8.20.0"
   }
 }

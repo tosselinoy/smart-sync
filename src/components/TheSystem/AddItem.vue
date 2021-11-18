@@ -1,29 +1,26 @@
 <template>
   <div class="q-pa-md">
     <div class="q-gutter-y-md column add-design">
-
       <!--      Input Expense-->
-
-      <q-input v-model="editedItem.name" hint="Name of expense"/>
-
+      <q-input v-model="localEditedItem.name" hint="Name of expense"/>
       <!--      Input Price-->
-      <q-input type="number" outlined v-model="editedItem.price" label="Expense"/>
+      <q-input type="number" outlined v-model="localEditedItem.price" label="Expense"/>
 
       <!--      Select Category-->
       <!-- equivalent -->
-      <q-select
-          label="Category"
-          transition-show="flip-up"
-          transition-hide="flip-down"
-          filled
-          v-model="editedItem.category"
-          :options="options"
-      />
-      <!--      Input Date-->
-      <q-input v-model="editedItem.date" filled type="date" hint="When was the expense made"/>
+      <!--      <q-select-->
+      <!--          label="Category"-->
+      <!--          transition-show="flip-up"-->
+      <!--          transition-hide="flip-down"-->
+      <!--          filled-->
+      <!--          v-model="editedItem.category"-->
+      <!--          :options="options"-->
+      <!--      />-->
 
+      <!--      Input Date-->
+      <q-input v-model="localEditedItem.date" filled type="date" mask="date" hint="When was the expense made"/>
       <!--Button insert Row-->
-      <q-btn class="btn-insert" @click="addRowExpense()" color="black" label="Add Expense"/>
+      <q-btn class="btn-insert" @click="addRowExpense" color="black" label="Add Expense"/>
 
     </div>
   </div>
@@ -32,38 +29,59 @@
 <script>
 // import localStorageDriver from "../middleware/localStorage"
 // import api from "../middleware/api"
-import firebaseDataBase from "../middleware/firebase/database";
+// import firebaseDataBase from "../../middleware/firebase/database";
+
+import {mapMutations, mapState, mapActions, mapGetters} from "vuex"
 
 export default {
   name: "AddItem",
-  props: ['tableName', 'item','category"'],
+  props: ['tableName', 'item', 'category'],
+  computed: mapState('category', ['editCategory']),
   data() {
     return {
-      editedItem: {
+      localEditedItem: {
         name: '',
-        price: 0,
-        category: '',
+        price: null,
+        // category: '',
         date: '',
-        // dense: false
       },
-      model: '',
+      // dense: false,
 
-      options: [
-        'Home', 'Butty', 'Car'
-      ]
+      // options: [
+      //   'Home', 'Butty', 'Car'
+      // ]
+      model: '',
     }
   },
   methods: {
+    ...mapActions('category', ['insertCategory']),
+    ...mapMutations('category', ["setEditedItem", 'setCategoryId', 'setSubEntity', 'resetTableId', 'resetSubEntity']),
+    //
     addRowExpense() {
-      firebaseDataBase.create({entity: this.tableName, item: this.editedItem})
-          .then(() => {
-            this.$emit('onDataChange')
-          })
+      debugger
+      this.setCategoryId(this.$route.params.id);
+      this.setSubEntity('tableCategory');
+      this.setEditedItem(this.localEditedItem)
+      this.insertCategory();
+
+      // firebaseDataBase.create({
+      //   entity: this.tableName,
+      //   item: this.editedItem,
+      //   tableId: this.$route.params.id,
+      //   subEntity: 'tableCategory'
+      // })
+      //     .then(() => {
+      //       // this.$emit('onDataChange')
+      //     })
+
     }
   },
   created() {
+    this.setCategoryId(this.$route.params.id);
+    this.setSubEntity('tableCategory');
+
     if (this.item) {
-      this.editedItem = this.item;
+      this.editCategory = this.item;
     }
   }
 }
@@ -76,7 +94,8 @@ export default {
   margin-right: auto;
   max-width: 350px;
 }
-.btn-insert{
+
+.btn-insert {
   display: block;
   margin-left: auto;
   margin-right: auto;

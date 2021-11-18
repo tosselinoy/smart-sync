@@ -1,10 +1,7 @@
 import firebaseDatabase from "../../middleware/firebase/database"
 
 export default {
-    getItems: async ({state, commit}) => {
-
-
-
+    getCategory: async ({state, commit}) => {
         const category = await firebaseDatabase.read({
             entity: 'expness',
             categoryId: state.categoryId,
@@ -13,21 +10,20 @@ export default {
         commit('setItems', category)
     },
 
-    deleteItem: async ({state, commit}, id) => {
+    deleteCategory: async ({state, commit}, id) => {
         await firebaseDatabase.remove({
             entity: 'expness',
             categoryId: state.categoryId,
             subEntity: state.subEntity,
             id: id
         });
-        const itemId = state.editedItemId;
-        commit('resetEditedItemId')
-        commit('deleteItem', itemId)
+        commit('resetEditedCategoryId')
+        commit('deleteCategory', id)
     },
 
-    insertItem: async ({state, commit}) => {
+    insertCategory: async ({state, commit}) => {
         const category = {}
-        Object.assign(expness, state.editedItem)
+        Object.assign(category, state.editCategory)
         // Saves in DB
         category.id = (await firebaseDatabase.create({
             entity: 'expness',
@@ -37,14 +33,15 @@ export default {
         })).key;
 
         // Saves in store
-        commit('resetEditedItem')
-        commit('insertItem', category)
+        commit('resetEditedCategory')
+        commit('insertCategory', category)
     },
 
     updateItem: async ({state, commit}) => {
+        debugger
         const item = {}
         Object.assign(item, state.itemUpdate)
-        debugger
+
         // Saves in DB
         await firebaseDatabase.update({
             entity: 'expness',
@@ -54,12 +51,12 @@ export default {
             item
         })
         item.id = state.editedItemId;
-        debugger
+
         // Saves in store
         commit('resetItemUpdate')
-        commit('resetEditedItemId')
+        commit('resetEditedCategoryId') //Change TO resetEditedCategoeyId
 
-        commit('cardsCategory/editExpeess', {categoryId: state.categoryId,item}, {root:true})
+        commit('cardsCategory/editExpeess', {categoryId: state.categoryId, item}, {root: true})
     },
 
     setItemById: async ({state, commit}) => {
@@ -70,6 +67,19 @@ export default {
             expness = await firebaseDatabase.getById({entity: 'expness', id: state.editedItemId})
         }
         commit('setEditedItem', expness)
+    },
+
+    checkForData: async ({state, commit, dispatch, rootState, payload}) => {
+
+        await dispatch('cardsCategory/getCards', payload, {root: true});
+        console.log(rootState.cardsCategory.expness)
+        const category = rootState.cardsCategory.expness.find(p => p.id === state.categoryId)
+        commit('setItems', category)
+        //     for (const key in rootState["cardsCategory/expness"]) {
+        //         debugger
+        //         console.log(key,'key')
+        //         // dispatch('getCategory',categoryData[state.categoryId][key]);
+        //     }
     }
 
 }

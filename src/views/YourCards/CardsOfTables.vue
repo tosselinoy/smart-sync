@@ -5,14 +5,13 @@
 </template>
 
 <script>
-import Cards from "../components/YourCards/Cards";
+import Cards from "../../components/YourCards/Cards";
 
 export default {
   name: "CardsOfTables",
   props: [],
-  components: {
-    Cards
-  },
+  components: {Cards},
+
   data() {
     return {
       chipName: 'expness',

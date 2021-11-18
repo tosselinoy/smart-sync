@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import RegistrationComp from "../components/auth/RegistrationComp";
+import RegistrationComp from "../../components/auth/RegistrationComp";
 
 export default {
   name: "Register",

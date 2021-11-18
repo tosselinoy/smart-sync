@@ -16,17 +16,17 @@
         המערכת תדע לחשב בצורה אוטומטית איך יראו החודשים הבאים, וכן גם את השנים</p>
     </div>
 
-    <button class="accordion">מחשבונים</button>
-    <div class="panel">
-      <p>
-        במעכרת יהיו מספר מחשבונים שונים.
-      <ol>
-        <li>כמה כסף אני צריך לחסוך בכל חודש על מנת להגיע למטרה מסויימת</li>
-        <li>כמה זמן ייקח לי לי לחסוך למטרה מסויימת</li>
-        <li>מחשבון כללי כמה ניתן לחסוך בכל חודש</li>
-      </ol>
-      </p>
-    </div>
+<!--    <button class="accordion">מחשבונים</button>-->
+<!--    <div class="panel">-->
+<!--      <p>-->
+<!--        במעכרת יהיו מספר מחשבונים שונים.-->
+<!--      <ol>-->
+<!--        <li>כמה כסף אני צריך לחסוך בכל חודש על מנת להגיע למטרה מסויימת</li>-->
+<!--        <li>כמה זמן ייקח לי לי לחסוך למטרה מסויימת</li>-->
+<!--        <li>מחשבון כללי כמה ניתן לחסוך בכל חודש</li>-->
+<!--      </ol>-->
+<!--      </p>-->
+<!--    </div>-->
 
     <button class="accordion">עיצוב אישי</button>
     <div class="panel">
@@ -46,10 +46,11 @@
   </div>
 </template>
 <style>
-.container-accordion{
+.container-accordion {
   margin-top: 30px;
   text-align: center;
 }
+
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
   font-family: 'Open Sans', sans-serif;
@@ -82,10 +83,11 @@
   content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
 
-li{
+li {
   text-align: center;
   list-style: inside;
 }
+
 /* Style the accordion panel. Note: hidden by default */
 .panel {
   padding: 0 18px;

@@ -7,8 +7,8 @@
 
 
 <script>
-import firebaseInstance from '../middleware/firebase'
-import SignInComp from "../components/auth/SignInComp";
+import firebaseInstance from '../../middleware/firebase'
+import SignInComp from "../../components/auth/SignInComp";
 
 export default {
   name: "Login",
