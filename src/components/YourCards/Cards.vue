@@ -31,34 +31,20 @@
 </template>
 
 <script>
-import firebaseDataBase from "../../middleware/firebase/database";
-import {mapState,mapActions,mapMutations} from "vuex";
+import {mapState, mapActions, mapMutations} from "vuex";
 
 export default {
   name: "Cards",
   props: ['chipName'],
   components: {},
-  computed:mapState('cardsCategory',['expness']),
+  computed: mapState('cardsCategory', ['expness']),
   data() {
-    return {
-      // categories: [],
-    }
+    return {}
   },
   methods: {
-    ...mapActions('cardsCategory',['getCards','deleteCards']),
-    ...mapMutations('category',['setItems']),
-    // read() {
-    //   firebaseDataBase.read({entity: this.chipName})
-    //       .then(result => {
-    //         this.categories = result;
-    //       })
-    // },
-    // remove(id) {
-    //   firebaseDataBase.remove({entity: this.chipName, id})
-    //       .then(() => {
-    //         // this.read();
-    //       })
-    // },
+    ...mapActions('cardsCategory', ['getCards', 'deleteCards']),
+    ...mapMutations('category', ['setItems']),
+
     goToTableCategory(category) {
       this.setItems(category);
       this.$router.push(`/category/${category.id}`)
@@ -67,21 +53,23 @@ export default {
   },
   created() {
     this.getCards();
-    // this.read();
-    // firebaseDataBase.getRef()
-    //     .on('child_changed', (snapshot) => {
-    //       this.read();
-    //       // const data = snapshot.val();
-    //       // alert(JSON.stringify(data));
-    //     });
   }
 
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@600&family=PT+Sans:wght@700&family=Raleway:wght@100&family=Ubuntu:wght@300&display=swap');
+
 .my-card {
   width: 100%;
   max-width: 250px;
+}
+
+.text-h6 {
+  color: #7a6a49;
+  font-weight: bold;
+  /*font-size: 15px;*/
+  font-family: 'PT Sans', sans-serif;
 }
 </style>

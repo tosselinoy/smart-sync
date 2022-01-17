@@ -1,6 +1,10 @@
 export default {
     expness: [],
-    // cardsId: '',
+    cardsId: '',
+    totalCards: [],
+    income: []
+
+
     // categories: {
     //     categoryName: ''
     // }

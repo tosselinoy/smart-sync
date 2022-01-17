@@ -11,6 +11,7 @@ export default {
     },
 
     deleteCategory: async ({state, commit}, id) => {
+
         await firebaseDatabase.remove({
             entity: 'expness',
             categoryId: state.categoryId,
@@ -38,7 +39,6 @@ export default {
     },
 
     updateItem: async ({state, commit}) => {
-        debugger
         const item = {}
         Object.assign(item, state.itemUpdate)
 
@@ -59,27 +59,29 @@ export default {
         commit('cardsCategory/editExpeess', {categoryId: state.categoryId, item}, {root: true})
     },
 
-    setItemById: async ({state, commit}) => {
-        let expness = {};
-        if (state.expness.length && state.expness.find(expness => expness.id === state.editedItemId)) {
-            expness = state.expness.find(expness => expness.id === state.editedItemId);
-        } else {
-            expness = await firebaseDatabase.getById({entity: 'expness', id: state.editedItemId})
-        }
-        commit('setEditedItem', expness)
-    },
+    // setItemById: async ({state, commit}) => {
+    //     let expness = {};
+    //     if (state.expness.length && state.expness.find(expness => expness.id === state.editedItemId)) {
+    //         expness = state.expness.find(expness => expness.id === state.editedItemId);
+    //     } else {
+    //         expness = await firebaseDatabase.getById({entity: 'expness', id: state.editedItemId})
+    //     }
+    //     commit('setEditedItem', expness)
+    // },
 
     checkForData: async ({state, commit, dispatch, rootState, payload}) => {
-
         await dispatch('cardsCategory/getCards', payload, {root: true});
-        console.log(rootState.cardsCategory.expness)
         const category = rootState.cardsCategory.expness.find(p => p.id === state.categoryId)
         commit('setItems', category)
-        //     for (const key in rootState["cardsCategory/expness"]) {
-        //         debugger
-        //         console.log(key,'key')
-        //         // dispatch('getCategory',categoryData[state.categoryId][key]);
-        //     }
-    }
+    },
+
+    sumOfTotalCat: async ({state, commit}, total) => {
+        let objTotal = {}
+        objTotal[state.category.categoryName] = total
+
+        await commit('setTotalCategory', objTotal);
+
+        // return total[state.category.categoryName]
+    },
 
 }

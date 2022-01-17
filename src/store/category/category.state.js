@@ -1,6 +1,6 @@
 export default {
     category: {},
-
+    totalCategory:{},
     // Item For Update
     itemUpdate: {},
 
@@ -13,6 +13,5 @@ export default {
         name: '',
         price: null,
         date: '',
-        // category: '',
-    }
+    },
 }

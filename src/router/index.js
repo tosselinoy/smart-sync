@@ -52,9 +52,9 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "Item" */ '../views/YourCards/Category.vue')
     },
-
-
 ]
+
+
 
 const router = new VueRouter({
     routes

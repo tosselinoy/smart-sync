@@ -5,18 +5,6 @@
       <q-input v-model="localEditedItem.name" hint="Name of expense"/>
       <!--      Input Price-->
       <q-input type="number" outlined v-model="localEditedItem.price" label="Expense"/>
-
-      <!--      Select Category-->
-      <!-- equivalent -->
-      <!--      <q-select-->
-      <!--          label="Category"-->
-      <!--          transition-show="flip-up"-->
-      <!--          transition-hide="flip-down"-->
-      <!--          filled-->
-      <!--          v-model="editedItem.category"-->
-      <!--          :options="options"-->
-      <!--      />-->
-
       <!--      Input Date-->
       <q-input v-model="localEditedItem.date" filled type="date" mask="date" hint="When was the expense made"/>
       <!--Button insert Row-->
@@ -27,9 +15,6 @@
 </template>
 
 <script>
-// import localStorageDriver from "../middleware/localStorage"
-// import api from "../middleware/api"
-// import firebaseDataBase from "../../middleware/firebase/database";
 
 import {mapMutations, mapState, mapActions, mapGetters} from "vuex"
 
@@ -58,22 +43,11 @@ export default {
     ...mapMutations('category', ["setEditedItem", 'setCategoryId', 'setSubEntity', 'resetTableId', 'resetSubEntity']),
     //
     addRowExpense() {
-      debugger
+
       this.setCategoryId(this.$route.params.id);
       this.setSubEntity('tableCategory');
       this.setEditedItem(this.localEditedItem)
       this.insertCategory();
-
-      // firebaseDataBase.create({
-      //   entity: this.tableName,
-      //   item: this.editedItem,
-      //   tableId: this.$route.params.id,
-      //   subEntity: 'tableCategory'
-      // })
-      //     .then(() => {
-      //       // this.$emit('onDataChange')
-      //     })
-
     }
   },
   created() {

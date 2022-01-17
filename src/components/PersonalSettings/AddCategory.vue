@@ -16,14 +16,12 @@
 
 
 <script>
-import firebaseDataBase from "../../middleware/firebase/database";
 import {mapMutations, mapState, mapActions} from "vuex"
 
 export default {
   name: "AddCategory",
   props: ['chipName'],
-  // components: {},z
-  // computed: mapState('cardsCategory', ['categories']),
+
 
   data() {
     return {
@@ -35,32 +33,9 @@ export default {
   methods: {
     ...mapActions('cardsCategory', ['insertCards']),
     ...mapMutations('cardsCategory', ['setCards']),
-
-    // addCategory() {
-    //   firebaseDataBase.create({entity: this.chipName, item: {categoryName: this.category}})
-    //   // firebaseDataBase.create({entity: this.chipName, item: this.categoryName})
-    //
-    //       .then(() => {
-    //           this.categoryName = this.category;
-    //       })
-    // },
-    // read() {
-    //   firebaseDataBase.read({entity: this.chipName})
-    //       .then(result => {
-    //         this.rows = result;
-    //       })
-    // },
   },
 
   created() {
-
-    // this.read();
-    // firebaseDataBase.getRef()
-    //     .on('child_changed', (snapshot) => {
-    //       this.read();
-    //       // const data = snapshot.val();
-    //       // alert(JSON.stringify(data));
-    //     });
   }
 
 }

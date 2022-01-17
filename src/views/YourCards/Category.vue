@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!--    <AddItem :tableName="tableName" @onDataChange="reloadCate()"></AddItem>-->
-    <!--    <ExpensTable :tableName="tableName" :category="category" :isReload="isReload"/>-->
     <AddItem :tableName="tableName"></AddItem>
     <ExpensTable :tableName="tableName"/>
     <SumComp></SumComp>
@@ -9,10 +7,10 @@
 </template>
 
 <script>
-import firebaseDatabase from "../../middleware/firebase/database"
 import ExpensTable from "../../components/TheSystem/ExpensTable";
 import AddItem from "../../components/TheSystem/AddItem";
 import SumComp from "../../components/YourCards/SumComp";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "Category",
@@ -21,6 +19,9 @@ export default {
     AddItem,
     ExpensTable,
     SumComp
+  },
+  computed: {
+    ...mapState('category', ['category']),
   },
   data() {
     return {
@@ -32,15 +33,13 @@ export default {
     }
   },
   methods: {
-    // getCategoryById() {
-    //   firebaseDatabase.getById({entity: this.tableName, id: this.$route.params.id}).then(res => {
-    //     this.category = res;
-    //   })
-    // },
+    ...mapActions('category', ['checkForData']),
 
   },
-  created() {
-    // this.getCategoryById();
+  async created() {
+    if (Object.keys(this.category).length === 0) {
+      await this.checkForData();
+    }
   }
 
 }

@@ -1,6 +1,6 @@
 <template>
 
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hhr lpr ffR">
     <q-header elevated class="glossy">
       <q-toolbar>
         <q-btn
@@ -11,7 +11,7 @@
             aria-label="Menu"
             icon="menu"
         />
-        <q-toolbar-title>
+        <q-toolbar-title class="title-style">
           SmartSync
         </q-toolbar-title>
       </q-toolbar>
@@ -44,24 +44,24 @@
 
         <!--        <q-item-label header>Menu</q-item-label>-->
         <q-item clickable @click="$router.push(`/`)">
-          <q-item-section avatar>
-            <q-icon name="school"/>
-          </q-item-section>
+<!--          <q-item-section avatar>-->
+<!--            <q-icon name="school"/>-->
+<!--          </q-item-section>-->
           <q-item-section>
             <q-item-label>Home</q-item-label>
             <!--            <q-item-label caption>Home Page</q-item-label>-->
           </q-item-section>
         </q-item>
 
-        <q-item v-if="user" clickable @click="$router.push(`/system`)">
-          <!--          <q-item-section avatar>-->
-          <!--            <q-icon name="chat"/>-->
-          <!--          </q-item-section>-->
-          <q-item-section>
-            <q-item-label>The System</q-item-label>
-            <q-item-label caption>Start organizing your life</q-item-label>
-          </q-item-section>
-        </q-item>
+<!--        <q-item v-if="user" clickable @click="$router.push(`/system`)">-->
+<!--          &lt;!&ndash;          <q-item-section avatar>&ndash;&gt;-->
+<!--          &lt;!&ndash;            <q-icon name="chat"/>&ndash;&gt;-->
+<!--          &lt;!&ndash;          </q-item-section>&ndash;&gt;-->
+<!--          <q-item-section>-->
+<!--            <q-item-label>The System</q-item-label>-->
+<!--            <q-item-label caption>Start organizing your life</q-item-label>-->
+<!--          </q-item-section>-->
+<!--        </q-item>-->
 
 
         <q-item v-if="user" clickable @click="$router.push(`/personalSettings`)">
@@ -69,7 +69,7 @@
           <!--            <q-icon name="forum"/>-->
           <!--          </q-item-section>-->
           <q-item-section>
-            <q-item-label>Personal Settings</q-item-label>
+            <q-item-label>Define your categories</q-item-label>
             <q-item-label caption>Before you get started, let's define a few things</q-item-label>
           </q-item-section>
         </q-item>
@@ -79,8 +79,8 @@
           <!--            <q-icon name="forum"/>-->
           <!--          </q-item-section>-->
           <q-item-section>
-            <q-item-label>YourCards</q-item-label>
-            <q-item-label caption>Your Category</q-item-label>
+            <q-item-label>Your expenses</q-item-label>
+<!--            <q-item-label caption>Your Category</q-item-label>-->
           </q-item-section>
         </q-item>
 
@@ -151,14 +151,11 @@ export default {
     //       })
     // },
     // deleteImage(imageUrl) {
-    //   debugger
     //   console.log(this.img)
     //   firebaseDatabase.remove({entity: this.entity, imageFile: this.imageFile, imageUrl})
     //       .then(() => {
-    //         debugger
     //         storage.deleteImageStorage({entity: this.entity, imageFile: this.imageFile, imgName: this.img.name})
     //             .then(() => {
-    //               debugger
     //               this.readDataImage();
     //             })
     //
@@ -187,4 +184,9 @@ export default {
 </script>
 
 <style>
+.glossy{
+background-color: white;
+  color: black;
+}
+
 </style>

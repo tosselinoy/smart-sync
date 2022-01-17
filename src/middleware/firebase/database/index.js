@@ -25,13 +25,13 @@ function read(options) {
                 return _dataForRead(result);
             })
     }
-
-
 }
 
 function create(options) {
     if (options.categoryId) {
         return firebaseInstance.firebase.database().ref(`users/${window.user.uid}/${options.entity}/${options.categoryId}/${options.subEntity}`).push(options.item);
+    } else if (options.salary) {
+        return firebaseInstance.firebase.database().ref(`users/${window.user.uid}/${options.entity})`).push(options.item)
     } else {
         return firebaseInstance.firebase.database().ref(`users/${window.user.uid}/${options.entity}`).push(options.item);
     }

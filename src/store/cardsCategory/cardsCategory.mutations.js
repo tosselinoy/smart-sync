@@ -1,5 +1,12 @@
 export default {
+
     setCards: ((state, expness) => state.expness = expness),
+
+    setArrayTotal: ((state, total) => state.totalCards = total),
+
+
+    setIncome: ((state, incomes) => state.income = incomes),
+
 
     resetEditedCardId: ((state) => state.expness.id = ''),
 
@@ -17,12 +24,24 @@ export default {
         delete state.expness.id;
     }),
 
+
+    resetEditedIncomes: ((state) => {
+        for (const key in state.income.id) {
+            state.income[key] = ''
+        }
+        delete state.income.id;
+    }),
+
+
     insertCard: ((state, expness) => {
         state.expness.push(expness)
     }),
 
+    insertIncome: ((state, salary) => {
+        state.income.push(salary)
+    }),
+
     editExpeess: ((state, item) => {
-        debugger
         const index = state.expness.findIndex(p => p.id === item.categoryId)
         let category = state.expness[index].tableCategory
         const index2 = category.findIndex(p => p.id === item.item.id)

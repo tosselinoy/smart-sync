@@ -24,9 +24,9 @@
 
       <q-card-section class="design-card">
         <q-btn class="btn-design" @click="moveToRegister()" rounded label="Not register yet?!"/>
-      <div class="btn-google">
-        <q-btn class="btn-design" @click="loginWithGoogle()" rounded label="Login with google"/>
-      </div>
+        <div class="btn-google">
+          <q-btn class="btn-design" @click="loginWithGoogle()" rounded label="Login with google"/>
+        </div>
       </q-card-section>
     </q-card>
   </div>
@@ -34,6 +34,7 @@
 
 <script>
 import firebaseInstance from "../../middleware/firebase";
+
 export default {
   name: "SignInComp",
   props: [],
@@ -87,6 +88,10 @@ export default {
         // ...
       });
     },
+
+    loginWithFaceBook() {
+
+    },
     moveToRegister() {
       this.$router.push('/register')
     }
@@ -99,6 +104,7 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@600&family=Raleway:wght@100&display=swap');
+
 .my-card {
   display: block;
   margin-left: auto;
@@ -112,14 +118,17 @@ export default {
   border-color: #7a6a49;
   border-width: 3px;
 }
+
 .text-h6 {
   font-family: 'Azeret Mono', monospace;
   font-size: 40px;
 }
-input{
+
+input {
   font-family: 'Raleway', sans-serif;
   font-size: 60px;
 }
+
 .design-card {
   text-align: center;
 }
@@ -130,7 +139,7 @@ input{
   color: #7a6a49;
 }
 
-.btn-google{
+.btn-google {
   padding: 10px;
 }
 
